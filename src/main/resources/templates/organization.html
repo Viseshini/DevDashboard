@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html data-ng-app="devDashboard">
+<head>
+<meta charset="ISO-8859-1" />
+<title>DevDashboard</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/angularTable.css"
+	data-th-href="@{/css/angularTable.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/general.css"
+	data-th-href="@{/css/general.css}" />
+<script type="text/javascript" src="../static/js/angularTable.js"
+	data-th-src="@{/js/angularTable.js}"></script>
+<link rel="stylesheet" type="text/css" href="../static/css/terra.css"
+	data-th-href="@{/css/terra.css}" />
+</head>
+<header>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header" style="text-align: center">
+				<h2 style="color: white">DevDashboard</h2>
+			</div>
+		</div>
+	</nav>
+</header>
+<body>
+	<div class="displaydata">
+		<div data-ng-controller="queryForOrganization">
+			<p>Showing data from {{startDate}} to {{endDate}}</p>
+			<p> Organization's name: {{orgName}} </p>
+			<p ng-if="teamName != null"> Team's name: {{teamName}} </p>
+			<table data-ng-table="tableParams" class="table-base table-striped"
+				show-filter="true">
+				<tr data-ng-repeat="user in $data">
+					<td title="'No.'" data-sortable="'score'">{{
+						(tableParams.page() - 1) * tableParams.count() + $index + 1 }}</td>
+					<td title="'Name'" filter="{ name: 'text'}" data-sortable="'name'">
+						{{user.name}}</td>
+						<!-- Show teams column only if the entire organization is being queried -->
+					<td title="'Teams'" filter="{ teams: 'text'}"
+						data-sortable="'teams'" ng-if="teamName == 'null'">{{user.teams}}</td>
+					<td title="'Score'" filter="{ score: 'text'}"
+						data-sortable="'score'">{{user.score}}</td>
+					<td data-ng-style="{'color':'green'}" title="'Commits'"
+						filter="{ commits: 'text'}" ng-if="commits != '0'" data-sortable="'commits'">
+						{{user.commits}}</td>
+					<td data-ng-style="{'color':'green'}" ng-if="prs != '0'" title="'PRs'"
+						filter="{ prs: 'text'}" data-sortable="'prs'">{{user.prs}}</td>
+					<td data-ng-style="{'color':'green'}" title="'Reviews'"
+						filter="{ reviews: 'text'}" ng-if="reviews != '0'" data-sortable="'reviews'">
+						{{user.reviews}}</td>
+					<td data-ng-style="{'color':'green'}" ng-if="successfulBuilds != '0'" title="'Successful Builds'"
+						filter="{ successfulBuilds: 'text'}"
+						data-sortable="'successfulBuilds'">{{user.successfulBuilds}}</td>
+					<td data-ng-style="{'color':'red'}" title="'Failed Builds'"
+						filter="{ failedBuilds: 'text'}" ng-if="failedBuilds != '0'" data-sortable="'failedBuilds'">
+						{{user.failedBuilds}}</td>
+					<td data-ng-style="{'color':'red'}" ng-if="criticalIssues != '0'" title="'Critical Issues'"
+						filter="{ criticalIssues: 'text'}"
+						data-sortable="'criticalIssues'">{{user.criticalIssues}}</td>
+					<td data-ng-style="{'color':'red'}" ng-if="codeCoverage != '0'" title="'Code Coverage delta'"
+						filter="{ codeCoverage: 'text'}" data-sortable="'codeCoverage'">
+						{{user.codeCoverage}}</td>
+				</tr>
+			</table>
+			<br />
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="../static/js/queryForOrganization.js"
+		data-th-src="@{/js/queryForOrganization.js}"></script>
+</body>
+</html>

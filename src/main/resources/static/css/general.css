@@ -1,0 +1,50 @@
+@charset "ISO-8859-1";
+.viewscores
+{
+    margin: auto;
+    text-align:center;
+    padding-top:100px;
+    padding-bottom:30px;
+}
+.inner
+{
+    text-align:center;
+}
+.Welcome
+{
+    margin:auto;
+    text-align:center;
+}
+.displaydata
+{
+    margin-left:auto; 
+    margin-right:auto;
+    text-align:center;
+    padding-top:60px;
+}
+.Buttons
+{
+    margin:auto;
+    text-align:center;
+    padding-top:60px;
+}
+.inner2
+{
+    font-size:18px;
+    color: #141823;
+    
+}
+.navbar-header{
+    
+    background-color: black !important;
+    padding:10px;
+    padding-left:40px;
+}
+li{
+    display: inline !important;
+     text-align:center;
+}
+.listclass{
+    background-color: black !important;
+    text-align:center;
+}
